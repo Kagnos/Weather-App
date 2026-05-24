@@ -58,3 +58,6 @@ h1, h2, h3, h4, h5, h6 {
 body {
     background-color: #8f8aa8;
 }
+#search-svg {
+    height: 25px;
+}
