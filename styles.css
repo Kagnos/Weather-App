@@ -58,6 +58,56 @@ h1, h2, h3, h4, h5, h6 {
 body {
     background-color: #8f8aa8;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin-top: 20vh;
+    gap: 100px;
+    color: white;
+}
+
+#controls-container {
+    display: flex;
+    width: 500px;
+    gap: 20px;
+}
+
+#search-input {
+    background-color: #00000050;
+    color: inherit;
+    font-size: 1.5rem;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+button {
+    background-color: inherit;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #00000050;
+    transition: 0.3s;
+}
+
 #search-svg {
-    height: 25px;
+    height: 35px;
+}
+
+#unit-btn {
+    font-size: 1.5rem;
+}
+
+#weather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #00000050;
+    height: 500px;
+    width: 500px;
+    border-radius: 10px;
 }
