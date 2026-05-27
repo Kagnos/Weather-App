@@ -13,10 +13,16 @@ async function fetchWeather(search) {
 };
 
 function renderWeather(data) {
-    const weatherContainer = document.querySelector("#weather-container");
+    const main = document.querySelector("main");
+    const div = document.createElement("div");
     const h1 = document.createElement("h1");
     const h2 = document.createElement("h2");
     const p = document.createElement("p");
+
+
+    const weatherContainer = div.cloneNode()
+    weatherContainer.id = "weather-container";
+    main.append(weatherContainer);
 
     const address = h1.cloneNode();
     address.innerText = data.resolvedAddress;
