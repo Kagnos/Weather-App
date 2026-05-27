@@ -1,5 +1,6 @@
 const searchBtn = document.querySelector("#search-btn");
 const searchInput = document.querySelector("#search-input");
+const unitBtn = document.querySelector("#unit-btn");
 
 async function fetchWeather(search) {
     try {
@@ -48,4 +49,15 @@ function renderWeather(data) {
 searchBtn.addEventListener("click", () => {
     fetchWeather(searchInput.value);
     searchInput.value = "";
+});
+
+unitBtn.addEventListener("click", () => {
+    switch (unitBtn.dataset.unit) {
+        case "fahrenheit":
+            unitBtn.dataset.unit = "celsius";
+            return unitBtn.innerText = "°C";
+        case "celsius":
+            unitBtn.dataset.unit = "fahrenheit";
+            return unitBtn.innerText = "°F";
+    }
 });
