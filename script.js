@@ -3,9 +3,13 @@ const searchInput = document.querySelector("#search-input");
 const unitBtn = document.querySelector("#unit-btn");
 const weatherContainer = document.querySelector("#weather-container");
 
+let lastSearch;
+let unit = "us";
+
 async function fetchWeather(search) {
     try {
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search}?key=FRKPALS6NRC22D5HDJUWEA5ZA`);
+        lastSearch = search;
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search}?unitGroup=${unit}&key=FRKPALS6NRC22D5HDJUWEA5ZA`);
         const data = await response.json();
 
         renderWeather(data);
@@ -14,12 +18,29 @@ async function fetchWeather(search) {
     };
 };
 
+function updateUnit() {
+    switch (unit) {
+        case "us":
+            unit = "metric";
+            return unitBtn.innerText = "°C";
+        case "metric":
+            unit = "us";
+            return unitBtn.innerText = "°F";
+    }
+};
+
 function renderWeather(data) {
+    let tempUnit;
+
+    unit === "metric"
+    ? tempUnit = "°C"
+    : tempUnit = "°F";
+
     weatherContainer.innerHTML = `
         <h1>${data.resolvedAddress}</h1>
-        <h2>Temp: ${data.currentConditions.temp}</h2>
-        <h2>Feels Like: ${data.currentConditions.feelslike}</h2>
-        <h2>Humidity: ${data.currentConditions.humidity}</h2>
+        <h2>Temp: ${data.currentConditions.temp}${tempUnit}</h2>
+        <h2>Feels Like: ${data.currentConditions.feelslike}${tempUnit}</h2>
+        <h2>Humidity: ${data.currentConditions.humidity}${tempUnit}</h2>
         <p>${data.description}</p>
     `;
 };
@@ -44,17 +65,14 @@ addEventListener("keydown", (e) => {
     if (searchInput === document.activeElement && e.key === "Enter") {
         clearWeatherContainer();
         fetchWeather(searchInput.value);
-        clearDOM();
+        clearSearch();
     };
 });
 
 unitBtn.addEventListener("click", () => {
-    switch (unitBtn.dataset.unit) {
-        case "fahrenheit":
-            unitBtn.dataset.unit = "celsius";
-            return unitBtn.innerText = "°C";
-        case "celsius":
-            unitBtn.dataset.unit = "fahrenheit";
-            return unitBtn.innerText = "°F";
+    updateUnit();
+
+    if (weatherContainer.innerHTML !== "") {
+        fetchWeather(lastSearch);
     }
 });
