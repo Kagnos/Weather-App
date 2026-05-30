@@ -2,29 +2,27 @@ const searchBtn = document.querySelector("#search-btn");
 const searchInput = document.querySelector("#search-input");
 const unitBtn = document.querySelector("#unit-btn");
 
+const weatherContainer = document.querySelector("#weather-container");
+const h1 = document.createElement("h1");
+const h2 = document.createElement("h2");
+const p = document.createElement("p");
+
 async function fetchWeather(search) {
     try {
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search}?key=FRKPALS6NRC22D5HDJUWEA5ZA`);
         const data = await response.json();
 
+        clearWeatherContainer();
         renderWeather(data);
     } catch (error) {
-        console.error(error);
+        clearWeatherContainer();
+        renderError();
     };
 };
 
+const clearWeatherContainer = () => weatherContainer.innerHTML = "";
+
 function renderWeather(data) {
-    const main = document.querySelector("main");
-    const div = document.createElement("div");
-    const h1 = document.createElement("h1");
-    const h2 = document.createElement("h2");
-    const p = document.createElement("p");
-
-
-    const weatherContainer = div.cloneNode()
-    weatherContainer.id = "weather-container";
-    main.append(weatherContainer);
-
     const address = h1.cloneNode();
     address.innerText = data.resolvedAddress;
     weatherContainer.append(address);
@@ -46,9 +44,24 @@ function renderWeather(data) {
     weatherContainer.append(description);
 };
 
+function renderError() {
+    const errMsg = h1.cloneNode();
+    errMsg.innerText = "Location not found, please try again";
+    weatherContainer.append(errMsg);
+};
+
+const clearSearch = () => searchInput.value = "";
+
 searchBtn.addEventListener("click", () => {
     fetchWeather(searchInput.value);
-    searchInput.value = "";
+    clearSearch();
+});
+
+addEventListener("keydown", (e) => {
+    if (searchInput === document.activeElement && e.key === "Enter") {
+        fetchWeather(searchInput.value);
+        clearSearch();
+    };
 });
 
 unitBtn.addEventListener("click", () => {

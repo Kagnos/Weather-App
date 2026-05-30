@@ -109,5 +109,7 @@ button:hover {
     background-color: #00000050;
     height: 500px;
     width: 500px;
+    padding: 5px 10px;
+    border: 2px solid black;
     border-radius: 10px;
 }
