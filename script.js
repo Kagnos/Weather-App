@@ -1,11 +1,7 @@
 const searchBtn = document.querySelector("#search-btn");
 const searchInput = document.querySelector("#search-input");
 const unitBtn = document.querySelector("#unit-btn");
-
 const weatherContainer = document.querySelector("#weather-container");
-const h1 = document.createElement("h1");
-const h2 = document.createElement("h2");
-const p = document.createElement("p");
 
 async function fetchWeather(search) {
     try {
@@ -23,31 +19,19 @@ async function fetchWeather(search) {
 const clearWeatherContainer = () => weatherContainer.innerHTML = "";
 
 function renderWeather(data) {
-    const address = h1.cloneNode();
-    address.innerText = data.resolvedAddress;
-    weatherContainer.append(address);
-
-    const temp = h2.cloneNode();
-    temp.innerText = `Temp: ${data.currentConditions.temp}`;
-    weatherContainer.append(temp);
-
-    const feelsLike = h2.cloneNode();
-    feelsLike.innerText = `Feels Like: ${data.currentConditions.feelslike}`;
-    weatherContainer.append(feelsLike);
-
-    const humidity = h2.cloneNode();
-    humidity.innerText = `Humidity: ${data.currentConditions.humidity}`;
-    weatherContainer.append(humidity);
-
-    const description = p.cloneNode();
-    description.innerText = data.description;
-    weatherContainer.append(description);
+    weatherContainer.innerHTML = `
+        <h1>${data.resolvedAddress}</h1>
+        <h2>Temp: ${data.currentConditions.temp}</h2>
+        <h2>Feels Like: ${data.currentConditions.feelslike}</h2>
+        <h2>Humidity: ${data.currentConditions.humidity}</h2>
+        <p>${data.description}</p>
+    `;
 };
 
 function renderError() {
-    const errMsg = h1.cloneNode();
-    errMsg.innerText = "Location not found, please try again";
-    weatherContainer.append(errMsg);
+    weatherContainer.innerHTML = `
+        <h1>Location not found, please try again</h1>
+    `;
 };
 
 const clearSearch = () => searchInput.value = "";
