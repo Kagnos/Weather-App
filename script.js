@@ -8,15 +8,11 @@ async function fetchWeather(search) {
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${search}?key=FRKPALS6NRC22D5HDJUWEA5ZA`);
         const data = await response.json();
 
-        clearWeatherContainer();
         renderWeather(data);
     } catch (error) {
-        clearWeatherContainer();
         renderError();
     };
 };
-
-const clearWeatherContainer = () => weatherContainer.innerHTML = "";
 
 function renderWeather(data) {
     weatherContainer.innerHTML = `
@@ -34,17 +30,21 @@ function renderError() {
     `;
 };
 
+const clearWeatherContainer = () => weatherContainer.innerHTML = "";
+
 const clearSearch = () => searchInput.value = "";
 
 searchBtn.addEventListener("click", () => {
+    clearWeatherContainer();
     fetchWeather(searchInput.value);
     clearSearch();
 });
 
 addEventListener("keydown", (e) => {
     if (searchInput === document.activeElement && e.key === "Enter") {
+        clearWeatherContainer();
         fetchWeather(searchInput.value);
-        clearSearch();
+        clearDOM();
     };
 });
 
