@@ -40,7 +40,7 @@ function renderWeather(data) {
         <h1>${data.resolvedAddress}</h1>
         <h2>Temp: ${data.currentConditions.temp}${tempUnit}</h2>
         <h2>Feels Like: ${data.currentConditions.feelslike}${tempUnit}</h2>
-        <h2>Humidity: ${data.currentConditions.humidity}${tempUnit}</h2>
+        <h2>Humidity: ${data.currentConditions.humidity}%</h2>
         <p>${data.description}</p>
     `;
 };
