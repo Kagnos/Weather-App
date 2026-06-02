@@ -37,13 +37,23 @@ function renderWeather(data) {
     : tempUnit = "°F";
 
     weatherContainer.innerHTML = `
-        <h1>${data.resolvedAddress}</h1>
-        <h2>Temp: ${data.currentConditions.temp}${tempUnit}</h2>
-        <h2>Feels Like: ${data.currentConditions.feelslike}${tempUnit}</h2>
-        <h2>Humidity: ${data.currentConditions.humidity}%</h2>
-        <p>${data.description}</p>
-    `;
+        <div id="today">
+            <h1>${data.resolvedAddress}</h1>
+            <h2>Temp: ${data.currentConditions.temp}${tempUnit}</h2>
+            <h2>Feels Like: ${data.currentConditions.feelslike}${tempUnit}</h2>
+            <h2>Humidity: ${data.currentConditions.humidity}%</h2>
+            <p>${data.description}</p>
+        </div>
 
+        <div id="hours">
+        <h1>${data.days[0].hours[0].temp}</h1>
+        </div>
+
+        <div id="week">
+        <h1>${data.days[1].temp}</h1>
+        </div>
+    `;
+console.log(data.days[0])
     if (
         unit === "us" && data.currentConditions.temp > 90 ||
         unit === "metric" && data.currentConditions.temp > 32.22
@@ -99,7 +109,7 @@ addEventListener("keydown", (e) => {
 unitBtn.addEventListener("click", () => {
     updateUnit();
 
-    if (weatherContainer.innerHTML !== "") {
+    if (lastSearch !== undefined) {
         fetchWeather(lastSearch);
     }
 });
