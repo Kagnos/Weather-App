@@ -43,12 +43,39 @@ function renderWeather(data) {
         <h2>Humidity: ${data.currentConditions.humidity}%</h2>
         <p>${data.description}</p>
     `;
+
+    if (
+        unit === "us" && data.currentConditions.temp > 90 ||
+        unit === "metric" && data.currentConditions.temp > 32.22
+    ) {
+        document.body.style.backgroundColor = "#ffac9d";
+    } else if (
+        unit === "us" && data.currentConditions.temp > 70 ||
+        unit === "metric" && data.currentConditions.temp > 21.11
+    ) {
+        document.body.style.backgroundColor = "#ffe6a0";
+    } else if (
+        unit === "us" && data.currentConditions.temp > 40 ||
+        unit === "metric" && data.currentConditions.temp > 4.44
+    ){
+        document.body.style.backgroundColor = "#7d967f";
+    } else if (
+        unit === "us" && data.currentConditions.temp > 10 ||
+        unit === "metric" && data.currentConditions.temp > -12.22
+    ) {
+        document.body.style.backgroundColor = "#afc2cf";
+    } else {
+        document.body.style.backgroundColor = "#c7c7c7";
+    }
+    
 };
 
 function renderError() {
     weatherContainer.innerHTML = `
         <h1>Location not found, please try again</h1>
     `;
+
+    document.body.style.backgroundColor = "#8f8aa8";
 };
 
 const clearWeatherContainer = () => weatherContainer.innerHTML = "";
