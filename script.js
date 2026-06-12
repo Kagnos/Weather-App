@@ -150,27 +150,27 @@ function renderWeather(data) {
         <div id="week">
         <h1 class="info-title">This Week</h1>
             <div class="info-box">
-                <h2>${format(parseISO(data.days[1].datetime), "EEEE")}</h2>
+                <h2>${format(parseISO(data.days[1].datetime), "EEE")}</h2>
                 <h3>${data.days[1].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${format(parseISO(data.days[2].datetime), "EEEE")}</h2>
+                <h2>${format(parseISO(data.days[2].datetime), "EEE")}</h2>
                 <h3>${data.days[2].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${format(parseISO(data.days[3].datetime), "EEEE")}</h2>
+                <h2>${format(parseISO(data.days[3].datetime), "EEE")}</h2>
                 <h3>${data.days[3].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${format(parseISO(data.days[4].datetime), "EEEE")}</h2>
+                <h2>${format(parseISO(data.days[4].datetime), "EEE")}</h2>
                 <h3>${data.days[4].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${format(parseISO(data.days[5].datetime), "EEEE")}</h2>
+                <h2>${format(parseISO(data.days[5].datetime), "EEE")}</h2>
                 <h3>${data.days[5].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${format(parseISO(data.days[6].datetime), "EEEE")}</h2>
+                <h2>${format(parseISO(data.days[6].datetime), "EEE")}</h2>
                 <h3>${data.days[6].temp}${tempUnit}</h3>
             </div>
         </div>
