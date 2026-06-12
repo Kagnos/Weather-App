@@ -108,6 +108,7 @@ button:hover {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px;
+    max-width: 1300px;
 }
 
 #today {
@@ -138,4 +139,8 @@ button:hover {
 #hours > div {
     width: 120px;
     text-align: center;
+}
+
+.info-title {
+    width: 100%;
 }

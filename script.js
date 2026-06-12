@@ -46,7 +46,7 @@ function renderWeather(data) {
         </div>
 
         <div id="hours">
-            <h1>Hourly Weather</h1>
+            <h1 class="info-title">Hourly Weather</h1>
             <div>
                 <h2>12 AM</h2>
                 <h3>${data.days[0].hours[0].temp}${tempUnit}</h3>
@@ -146,7 +146,7 @@ function renderWeather(data) {
         </div>
 
         <div id="week">
-        <h1>This Week</h1>
+        <h1 class="info-title">This Week</h1>
         <h1>${data.days[1].temp}</h1>
         </div>
     `;
