@@ -119,9 +119,6 @@ button:hover {
 #hours {
     grid-row: 2 / 3;
     grid-column: 1 / 3;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
 }
 
 #week {
@@ -129,18 +126,29 @@ button:hover {
     grid-column: 2 / 3;
 }
 
-#today, #hours, #week, #hours > div {
+#hours, #week {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#today, #hours, #week, .info-box {
     background-color: #00000050;
     padding: 10px;
     border: 2px solid black;
     border-radius: 10px;
 }
 
-#hours > div {
-    width: 120px;
+.info-box {
+    min-width: 120px;
     text-align: center;
 }
 
 .info-title {
     width: 100%;
+}
+
+#error-msg {
+    grid-row: 1 / 3;
+    grid-column: 1 / 3;
 }
