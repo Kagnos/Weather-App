@@ -1,3 +1,5 @@
+import { format, parseISO } from "https://cdn.jsdelivr.net/npm/date-fns@4.1.0/+esm";
+
 const searchBtn = document.querySelector("#search-btn");
 const searchInput = document.querySelector("#search-input");
 const unitBtn = document.querySelector("#unit-btn");
@@ -148,32 +150,32 @@ function renderWeather(data) {
         <div id="week">
         <h1 class="info-title">This Week</h1>
             <div class="info-box">
-                <h2>${data.days[1].datetime}</h2>
+                <h2>${format(parseISO(data.days[1].datetime), "EEEE")}</h2>
                 <h3>${data.days[1].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${data.days[2].datetime}</h2>
+                <h2>${format(parseISO(data.days[2].datetime), "EEEE")}</h2>
                 <h3>${data.days[2].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${data.days[3].datetime}</h2>
+                <h2>${format(parseISO(data.days[3].datetime), "EEEE")}</h2>
                 <h3>${data.days[3].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${data.days[4].datetime}</h2>
+                <h2>${format(parseISO(data.days[4].datetime), "EEEE")}</h2>
                 <h3>${data.days[4].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${data.days[5].datetime}</h2>
+                <h2>${format(parseISO(data.days[5].datetime), "EEEE")}</h2>
                 <h3>${data.days[5].temp}${tempUnit}</h3>
             </div>
             <div class="info-box">
-                <h2>${data.days[6].datetime}</h2>
+                <h2>${format(parseISO(data.days[6].datetime), "EEEE")}</h2>
                 <h3>${data.days[6].temp}${tempUnit}</h3>
             </div>
         </div>
     `;
-console.log(data.days[0])
+
     if (
         unit === "us" && data.currentConditions.temp > 90 ||
         unit === "metric" && data.currentConditions.temp > 32.22
